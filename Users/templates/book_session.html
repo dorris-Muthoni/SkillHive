@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile</title>
+    <title>Book a Session</title>
     <!-- Add any styling or Bootstrap links here -->
 </head>
 <body>
-    <h1>Update Profile</h1>
+    <h1>Book a Session</h1>
     <form method="post">
         {% csrf_token %}
-        <!-- Add form fields for updating the profile -->
-        <button type="submit">Save Changes</button>
+        <!-- Add form fields for session booking -->
+        <button type="submit">Book Session</button>
     </form>
     <a href="{% url 'profile' %}">Back to Profile</a>
 </body>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.views import LoginView
+
 
 class UserProfile(models.Model):
     """Extends the user model with additional details."""
@@ -22,3 +24,5 @@ class Skill(models.Model):
         return f"{self.name} ({self.user.username})"
 
 
+class MyLoginView(LoginView):
+    template_name = 'login.html'  

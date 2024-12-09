@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'Skill_Hive',
     'Users',
     'Courses',
     'Membership',
@@ -51,6 +50,8 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
+LOGIN_REDIRECT_URL = '/profile/'  # Redirect to a custom profile page
+LOGOUT_REDIRECT_URL = '/'  # Redirect to the home page after logout
 
 
 MIDDLEWARE = [

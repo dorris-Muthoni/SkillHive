@@ -1,0 +1,31 @@
+/* Profile Page Styling */
+body {
+    background-image: url('/static/images/dashboard_background.webp'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+
+.welcome-message {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar a {
+    color: white !important;
+}
+
+.container {
+    margin-top: 50px;
+}

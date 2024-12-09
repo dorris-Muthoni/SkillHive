@@ -27,31 +27,7 @@ def register(request):
 
     return render(request, 'register.html', {'form': form})
 
-# def login_user(request):
-#     """User login view using LoginForm."""
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             # Authenticate the user
-#             user = authenticate(request, username=username, password=password)
 
-        #     if user is not None:
-        #         # Ensure the user is valid before logging them in
-        #         login(request, user)
-        #         messages.success(request, "You have successfully logged in.")
-        #         return redirect('profile')
-        #     else:
-        #         # Error if authentication fails
-        #         messages.error(request, "Invalid username or password.")
-        # else:
-    #         # Error if form is invalid
-    #         messages.error(request, "Please correct the errors below.")
-    # else:
-    #     form = LoginForm()
-
-    # return render(request, 'users/login.html', {'form': form})
 def login_user(request):
     """User login view using LoginForm."""
     if request.method == 'POST':
@@ -76,7 +52,7 @@ def login_user(request):
     else:
         form = LoginForm()  # If GET request, show an empty form
 
-    return render(request, 'users/login.html', {'form': form})
+    return render(request, 'Users/templates/login.html', {'form': form})
 def about(request):
     """Render the About Us page."""
     return render(request, 'about.html', {'title': 'About Us'})
@@ -111,4 +87,12 @@ def skills(request):
     return render(request, 'skills.html', {'skills': user_skills})
 
 
+@login_required
+def update_profile(request):
+    # Logic for updating the user profile will go here
+    return render(request, 'update_profile.html') 
 
+@login_required
+def book_session(request):
+    # Logic for booking a session goes here
+    return render(request, 'book_session.html') 
