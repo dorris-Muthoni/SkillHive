@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Skill 
 
 # class LoginForm(forms.Form):
 #     """Form for user login."""
@@ -61,3 +62,21 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError("This username is already taken.")
         return username
 
+
+class SkillForm(forms.ModelForm):
+    """Form for adding and editing skills."""
+    class Meta:
+        model = Skill
+        fields = ['name', 'description']  # Fields that will appear in the form
+
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter skill name'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter skill description',
+                'rows': 3  # Adjust the number of rows for the description textarea
+            }),
+        }

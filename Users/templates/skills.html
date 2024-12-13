@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Manage Your Skills</h1>
+
+  {% if messages %}
+    <div class="alert-messages">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if user.is_authenticated %}
+    <h2>Your Skills</h2>
+    
+    <ul>
+      {% for skill in skills %}
+        <li>
+          <strong>{{ skill.name }}</strong>: {{ skill.description }}
+          <!-- Delete and Edit buttons only for the user's skills -->
+          <form method="POST" action="{% url 'manage_skills' %}" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="delete">
+            <input type="hidden" name="skill_id" value="{{ skill.id }}">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+          <button 
+            class="btn btn-secondary btn-sm" 
+            onclick="showEditForm('{{ skill.id }}', '{{ skill.name }}', '{{ skill.description }}')">
+            Edit
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <hr>
+    <h3>Add or Update Skill:</h3>
+    <form method="POST" action="{% url 'manage_skills' %}" id="skill-form">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="add" id="form-action">
+      <input type="hidden" name="skill_id" id="form-skill-id">
+      <div class="form-group">
+        <label for="skill-name">Name:</label>
+        <input type="text" name="name" id="skill-name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="skill-description">Description:</label>
+        <textarea name="description" id="skill-description" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success" id="form-submit-button">Add Skill</button>
+      <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+    </form>
+  {% else %}
+    <p>You need to <a href="{% url 'login' %}">login</a> to manage your skills.</p>
+  {% endif %}
+
+  <script>
+    function showEditForm(skillId, skillName, skillDescription) {
+      // Populate the form with the skill data for editing
+      document.getElementById('form-action').value = 'edit';
+      document.getElementById('form-skill-id').value = skillId;
+      document.getElementById('skill-name').value = skillName;
+      document.getElementById('skill-description').value = skillDescription;
+      document.getElementById('form-submit-button').textContent = 'Update Skill';
+    }
+
+    function clearForm() {
+      document.getElementById('form-action').value = 'add';
+      document.getElementById('form-skill-id').value = '';
+      document.getElementById('skill-name').value = '';
+      document.getElementById('skill-description').value = '';
+      document.getElementById('form-submit-button').textContent = 'Add Skill';
+    }
+  </script>
+{% endblock %}
+
+
+
+
+
+
+
+

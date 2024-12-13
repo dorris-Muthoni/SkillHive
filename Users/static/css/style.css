@@ -7,18 +7,22 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: url('https://source.unsplash.com/1920x1080/?nature,abstract') no-repeat center center fixed;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.6), 
+        rgba(0, 0, 0, 0.6)
+    ), url('https://source.unsplash.com/1920x1080/?nature,abstract') no-repeat center center fixed;
     background-size: cover;
-    color: #333;
+    color: #f5f5f5;
 }
 
+/* Links */
 a {
     text-decoration: none;
-    color: #ffffff;
+    color: #f5c518; /* A soft yellow for better contrast */
 }
 
 a:hover {
-    color: #ffcc00;
+    color: #ffc107; /* Brighter yellow for hover */
 }
 
 /* Main Container */
@@ -30,7 +34,7 @@ a:hover {
 
 /* Header */
 .header {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(34, 34, 34, 0.9); /* Darker header for better focus */
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -39,7 +43,7 @@ a:hover {
 
 .logo h1 {
     font-size: 1.8rem;
-    color: #ffffff;
+    color: #f5f5f5;
 }
 
 .nav ul {
@@ -53,14 +57,14 @@ a:hover {
 
 .nav li a {
     font-weight: 700;
-    color: #ffffff;
+    color: #f5f5f5;
     padding: 8px 12px;
     border-radius: 5px;
     transition: background 0.3s ease;
 }
 
 .nav li a:hover {
-    background: #28a745;
+    background: #17a2b8; /* Soft teal for hover */
     color: #ffffff;
 }
 
@@ -69,48 +73,36 @@ main {
     flex-grow: 1;
     padding: 40px 20px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9); /* Light background for text readability */
+    color: #333; /* Dark text for contrast */
     border-radius: 10px;
     max-width: 800px;
     margin: 20px auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
 
 /* Footer */
 .footer {
-    background: rgba(0, 0, 0, 0.7);
-    color: #ffffff;
+    background: rgba(34, 34, 34, 0.9);
+    color: #f5f5f5;
     text-align: center;
-    padding: 30px 0;
-    /* Main container ensures full viewport height */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Full height of the viewport */
+    padding: 20px 0;
 }
 
-/* Main content fills the space between header and footer */
-main {
-    flex-grow: 1; /* Expands to fill available vertical space */
-}
-
-/* Footer */
-.footer {
-    background: rgba(0, 0, 0, 0.7);
+/* Button Styles (if any are used) */
+button {
+    background: #28a745;
     color: #ffffff;
-    text-align: center;
-    padding: 30px 0;
-    margin-top: auto; /* Pushes footer to the bottom */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-}
-
-body {
-    background: url('/static/images/final_full_image.png') no-repeat center center fixed;
-    background-size: cover; /* Ensures the image covers the entire viewport */
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: #ffffff;
+button:hover {
+    background: #218838;
 }
 
 

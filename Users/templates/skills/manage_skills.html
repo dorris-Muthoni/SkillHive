@@ -1,0 +1,80 @@
+
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Skills</title>
+    <link rel="stylesheet" href="{% static 'css/manage_skill.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Manage Your Skills</h1>
+        </header>
+
+        <div class="content">
+            <!-- Skills Table -->
+            <h2>Skills List</h2>
+            <table class="skills-table">
+                <thead>
+                    <tr>
+                        <th>Skill Name</th>
+                        <th>Description</th>
+                        <th>Booking Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for skill in skills %}
+                    <tr>
+                        <td>{{ skill.name }}</td>
+                        <td>{{ skill.description }}</td>
+                        <td>{{ skill.booking_status }}</td>
+                        <td>
+                            <form method="POST" action="{% url 'manage_skills' %}" class="action-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="edit">
+                                <input type="hidden" name="skill_id" value="{{ skill.id }}">
+                                <button type="submit" class="btn update-btn">Update</button>
+                            </form>
+                            <form method="POST" action="{% url 'manage_skills' %}" class="action-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="skill_id" value="{{ skill.id }}">
+                                <button type="submit" class="btn delete-btn">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No skills available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Add New Skill Form -->
+            <h2>Add a New Skill</h2>
+            <form method="POST" action="{% url 'manage_skills' %}" class="add-skill-form">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add">
+                <div class="form-group">
+                    <label for="name">Skill Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Skill Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Skill Description:</label>
+                    <textarea id="description" name="description" placeholder="Skill Description" required></textarea>
+                </div>
+                <button type="submit" class="btn add-btn">Add Skill</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+
